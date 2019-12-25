@@ -18,6 +18,8 @@ RUN (useradd -m -d /home/docker -s /bin/bash docker && \
      echo "docker ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers)
 
 # Install golang
+RUN (wget https://dl.google.com/go/go1.13.5.linux-amd64.tar.gz && \
+tar -xvf go1.13.5.linux-amd64.tar.gz)
 
 
 USER docker
@@ -36,7 +38,8 @@ RUN (mkdir /home/docker/.vim && mkdir /home/docker/.vim/bundle && \
     cd /home/docker/.vim/bundle && \
     git clone https://github.com/tpope/vim-fugitive.git && \
     git clone https://github.com/vim-airline/vim-airline.git && \
-    git clone https://github.com/airblade/vim-gitgutter)
+    git clone https://github.com/airblade/vim-gitgutter && \
+    echo "set makeprg=/home/docker/go/bin/go\ build" >> ~/.vimrc)
 
 # Prepare SSH key file
 RUN (mkdir /home/docker/.ssh && \
