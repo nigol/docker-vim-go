@@ -17,14 +17,13 @@ RUN (apt-get update && \
 RUN (useradd -m -d /home/docker -s /bin/bash docker && \
      echo "docker ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers)
 
-# Install golang
-RUN (wget https://dl.google.com/go/go1.13.5.linux-amd64.tar.gz && \
-tar -xvf go1.13.5.linux-amd64.tar.gz)
-
-
 USER docker
 ENV HOME /home/docker
 WORKDIR /home/docker
+
+# Install golang
+RUN (wget https://dl.google.com/go/go1.13.5.linux-amd64.tar.gz && \
+tar -xvf go1.13.5.linux-amd64.tar.gz)
 
 RUN (git config --global user.email "nigol@nigol.cz" && \
   git config --global user.name "Martin Polak")
