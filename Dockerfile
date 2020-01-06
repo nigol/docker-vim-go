@@ -19,7 +19,6 @@ RUN (useradd -m -d /home/docker -s /bin/bash docker && \
 
 USER docker
 ENV HOME /home/docker
-ENV GOPATH /home/docker
 WORKDIR /home/docker
 
 # Install golang
